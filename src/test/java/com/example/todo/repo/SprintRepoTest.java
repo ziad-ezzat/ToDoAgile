@@ -1,6 +1,6 @@
 package com.example.todo.repo;
 
-import com.example.todo.entity.Task;
+import com.example.todo.entity.Sprint;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -10,19 +10,19 @@ import java.util.List;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class TaskRepoTest {
+public class SprintRepoTest {
 
     @Autowired
-    private TaskRepo taskRepo;
+    private SprintRepo sprintRepo;
 
     @Test
-    public void testFindAllByTitle() {
-        Task task = new Task();
-        task.setTitle("task");
-        taskRepo.save(task);
+    public void testFindAllByName() {
+        Sprint sprint = new Sprint();
+        sprint.setName("sprint");
+        sprintRepo.save(sprint);
 
-        List<Task> tasks = taskRepo.findAllByTitle("task");
+        List<Sprint> sprints = sprintRepo.findAllByName("sprint");
 
-        assert tasks.size() == 1;
+        assert sprints.size() == 1;
     }
 }

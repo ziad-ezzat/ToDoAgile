@@ -1,28 +1,24 @@
 package com.example.todo.repo;
 
-import com.example.todo.entity.Task;
+import com.example.todo.entity.Developer;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-import java.util.List;
-
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class TaskRepoTest {
+public class DeveloperRepoTest {
 
     @Autowired
-    private TaskRepo taskRepo;
+    private DeveloperRepo developerRepo;
 
     @Test
-    public void testFindAllByTitle() {
-        Task task = new Task();
-        task.setTitle("task");
-        taskRepo.save(task);
+    public void testFindAllByName() {
+        Developer developer = new Developer();
+        developer.setName("developer");
+        developerRepo.save(developer);
 
-        List<Task> tasks = taskRepo.findAllByTitle("task");
-
-        assert tasks.size() == 1;
+        assert developerRepo.findAllByName("developer").size() == 1;
     }
 }

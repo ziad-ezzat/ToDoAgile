@@ -60,8 +60,8 @@ The application includes unit tests for the repository and service layers to ens
 
 ## Entity Relationship Diagram
 
-![24.09.2023_22.09.10_REC.png](..%2F..%2F24.09.2023_22.09.10_REC.png)
 ![24.09.2023_22.07.31_REC.png](..%2F..%2F24.09.2023_22.07.31_REC.png)
+![24.09.2023_22.09.10_REC.png](..%2F..%2F24.09.2023_22.09.10_REC.png)
 
 Above is the Entity-Relationship Diagram (ERD) representing the relationships between developers, sprints, and tasks in the database.
 

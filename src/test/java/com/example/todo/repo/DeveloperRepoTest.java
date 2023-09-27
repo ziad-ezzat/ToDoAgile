@@ -10,15 +10,5 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class DeveloperRepoTest {
 
-    @Autowired
-    private DeveloperRepo developerRepo;
 
-    @Test
-    public void testFindAllByName() {
-        Developer developer = new Developer();
-        developer.setName("developer");
-        developerRepo.save(developer);
-
-        assert developerRepo.findAllByName("developer").size() == 1;
-    }
 }

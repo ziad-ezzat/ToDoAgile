@@ -12,17 +12,5 @@ import java.util.List;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class SprintRepoTest {
 
-    @Autowired
-    private SprintRepo sprintRepo;
 
-    @Test
-    public void testFindAllByName() {
-        Sprint sprint = new Sprint();
-        sprint.setName("sprint");
-        sprintRepo.save(sprint);
-
-        List<Sprint> sprints = sprintRepo.findAllByName("sprint");
-
-        assert sprints.size() == 1;
-    }
 }

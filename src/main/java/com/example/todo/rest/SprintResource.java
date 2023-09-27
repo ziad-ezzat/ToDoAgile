@@ -4,6 +4,7 @@ import com.example.todo.dto.SprintDto;
 import com.example.todo.service.SprintService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -21,14 +22,30 @@ public class SprintResource {
         return sprintService.findAll();
     }
 
-    @GetMapping("/name/{name}")
-    public List<SprintDto> findAllByName(@PathVariable String name) {
-        return sprintService.findAllByName(name);
-    }
-
-    @GetMapping("/{id}")
-    public SprintDto findById(@PathVariable Long id) {
-        return sprintService.findById(id);
+    @GetMapping("/get")
+    public List<SprintDto> findAllByNameOrId(@RequestParam(required = false) String name,@RequestParam(required = false) Long id) {
+        if (id != null)
+        {
+            if (name != null)
+            {
+                if ( sprintService.findById(id).getName().equals(name))
+                {
+                    return Collections.singletonList(sprintService.findById(id));
+                }
+                else
+                {
+                    return Collections.emptyList();
+                }
+            }
+            else
+            {
+                return Collections.singletonList(sprintService.findById(id));
+            }
+        }
+        else if (name != null) {
+            return sprintService.findAllByName(name).map(List::of).orElseThrow();
+        }
+        throw new IllegalArgumentException("You must specify either name or id");
     }
 
     @PostMapping("/save")

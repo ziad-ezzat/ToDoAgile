@@ -4,6 +4,7 @@ import com.example.todo.dto.SprintDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public interface SprintService {
@@ -12,5 +13,5 @@ public interface SprintService {
     SprintDto findById(Long id);
     SprintDto save(SprintDto sprintDto);
     void deleteById(Long id);
-    List<SprintDto> findAllByName(String name);
+    Optional<SprintDto> findAllByName(String name);
 }

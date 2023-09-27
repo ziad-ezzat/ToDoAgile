@@ -14,6 +14,11 @@ This Spring Boot application simulates Agile methods and manages tasks, sprints,
 
 This project is a Spring Boot application that emulates Agile methodologies by managing tasks, sprints, and developers. It provides CRUD (Create, Read, Update, Delete) operations for these entities, allowing you to efficiently manage your project in an Agile manner.
 
+![img.png](img.png)
+![img_1.png](img_1.png)
+![img_2.png](img_2.png)
+![img_3.png](img_3.png)
+
 ## Entities
 
 ### Developer

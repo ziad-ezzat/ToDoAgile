@@ -4,10 +4,12 @@ import com.example.todo.dto.DeveloperDto;
 import com.example.todo.entity.Developer;
 import com.example.todo.repo.DeveloperRepo;
 import com.example.todo.service.mapper.developerMap.DeveloperMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -16,6 +18,7 @@ public class DeveloperServiceImpl implements DeveloperService {
     private final DeveloperRepo developerRepo;
     private final DeveloperMapper developerMapper;
 
+    @Autowired
     public DeveloperServiceImpl(DeveloperRepo developerRepo, DeveloperMapper developerMapper) {
         this.developerRepo = developerRepo;
         this.developerMapper = developerMapper;
@@ -44,7 +47,7 @@ public class DeveloperServiceImpl implements DeveloperService {
     }
 
     @Override
-    public List<DeveloperDto> findAllByName(String name) {
-        return developerRepo.findAllByName(name).stream().map(developerMapper::entityToDto).toList();
+    public Optional<DeveloperDto> findAllByName(String name) {
+        return developerRepo.findAllByName(name).map(developerMapper::entityToDto);
     }
 }

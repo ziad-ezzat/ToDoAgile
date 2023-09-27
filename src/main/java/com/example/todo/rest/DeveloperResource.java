@@ -2,9 +2,9 @@ package com.example.todo.rest;
 
 import com.example.todo.dto.DeveloperDto;
 import com.example.todo.service.DeveloperService;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -22,14 +22,30 @@ public class DeveloperResource {
         return developerService.findAll();
     }
 
-    @GetMapping("/name/{name}")
-    public List<DeveloperDto> findAllByName(@PathVariable String name) {
-        return developerService.findAllByName(name);
-    }
-
-    @GetMapping("/{id}")
-    public DeveloperDto findById(@PathVariable Long id) {
-        return developerService.findById(id);
+    @GetMapping("/get")
+    public List<DeveloperDto> findAllByNameOrId(@RequestParam(required = false) String name,@RequestParam(required = false) Long id) {
+        if (id != null)
+        {
+            if (name != null)
+            {
+                if ( developerService.findById(id).getName().equals(name))
+                {
+                    return Collections.singletonList(developerService.findById(id));
+                }
+                else
+                {
+                    return Collections.emptyList();
+                }
+            }
+            else
+            {
+                return Collections.singletonList(developerService.findById(id));
+            }
+        }
+        else if (name != null) {
+            return developerService.findAllByName(name).map(List::of).orElseThrow();
+        }
+        throw new IllegalArgumentException("You must specify either name or id");
     }
 
     @PostMapping("/save")
@@ -37,7 +53,7 @@ public class DeveloperResource {
         developerService.save(developerDto);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public void deleteById(@PathVariable Long id) {
         developerService.deleteById(id);
     }

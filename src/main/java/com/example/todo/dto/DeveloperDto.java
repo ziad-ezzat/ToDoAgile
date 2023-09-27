@@ -11,7 +11,5 @@ public class DeveloperDto {
 
     private Long id;
     private String name;
-    private Set<Task> assignedTaskIds;
-    private Set<Task> ownedTaskIds;
 }
 

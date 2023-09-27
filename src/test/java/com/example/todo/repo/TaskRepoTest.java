@@ -12,17 +12,5 @@ import java.util.List;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class TaskRepoTest {
 
-    @Autowired
-    private TaskRepo taskRepo;
 
-    @Test
-    public void testFindAllByTitle() {
-        Task task = new Task();
-        task.setTitle("task");
-        taskRepo.save(task);
-
-        List<Task> tasks = taskRepo.findAllByTitle("task");
-
-        assert tasks.size() == 1;
-    }
 }

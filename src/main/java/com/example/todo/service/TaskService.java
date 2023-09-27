@@ -4,6 +4,7 @@ import com.example.todo.dto.TaskDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public interface TaskService {
@@ -12,5 +13,5 @@ public interface TaskService {
     TaskDto findById(Long id);
     TaskDto save(TaskDto taskDto);
     void deleteById(Long id);
-    List<TaskDto> findAllByTitle(String title);
+    Optional<TaskDto> findAllByTitle(String title);
 }

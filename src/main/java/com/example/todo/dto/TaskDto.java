@@ -4,6 +4,7 @@ import com.example.todo.entity.Developer;
 import com.example.todo.entity.Sprint;
 import lombok.Data;
 
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -13,8 +14,8 @@ public class TaskDto {
     private String title;
     private String description;
     private String status;
-    private Developer ownerId;
-    private Set<Developer> assignedToIds;
-    private Sprint sprintId;
+    private Developer owner;
+    private List<Developer> assignedTo;
+    private Sprint sprint;
 }
 

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -44,7 +45,7 @@ public class SprintServiceImpl implements SprintService{
     }
 
     @Override
-    public List<SprintDto> findAllByName(String name) {
-        return sprintRepo.findAllByName(name).stream().map(sprintMapper::entityToDto).toList();
+    public Optional<SprintDto> findAllByName(String name) {
+        return sprintRepo.findAllByName(name).map(sprintMapper::entityToDto);
     }
 }

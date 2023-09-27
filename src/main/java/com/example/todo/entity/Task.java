@@ -3,25 +3,24 @@ package com.example.todo.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "tasks")
+@Table
 @Data
 public class Task {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
 
-    @Column(name = "task_title")
     private String title;
 
-    @Column(name = "task_description")
     private String description;
 
-    @Column(name = "task_status")
     private String status;
 
     @ManyToOne
@@ -32,7 +31,7 @@ public class Task {
     @JoinTable(name = "task_developer",
             joinColumns = @JoinColumn(name = "task_id"),
             inverseJoinColumns = @JoinColumn(name = "developer_id"))
-    private Set<Developer> assignedTo = new HashSet<>();
+    private List<Developer> assignedTo = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "sprint_id")

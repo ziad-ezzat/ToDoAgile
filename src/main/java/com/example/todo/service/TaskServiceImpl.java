@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -44,7 +45,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<TaskDto> findAllByTitle(String title) {
-        return taskRepo.findAllByTitle(title).stream().map(taskMapper::entityToDto).toList();
+    public Optional<TaskDto> findAllByTitle(String title) {
+        return taskRepo.findAllByTitle(title).map(taskMapper::entityToDto);
     }
 }
